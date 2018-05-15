@@ -1,0 +1,76 @@
+@import './_variables.scss';
+
+/*Prefix mixin*/
+@mixin prefix($properties, $value) {
+  @each $prefix in '-webkit-',
+  '-moz-',
+  '-ms-',
+  '-o-',
+  '' {
+    #{$prefix}$properties: $value;
+  }
+}
+/*link style placeholder*/
+@mixin link() {
+  color: $lightfont;
+  text-decoration: none;
+}
+@mixin contactButton() {
+  border: 2px solid white;
+  border-radius: 6px;
+  padding: 0.5rem 4.5rem;
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+/*background opacity mixin*/
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color;
+    background: rgba($color, $opacity);
+}
+
+/*grid mixins*/
+
+@mixin create-mq($breakpoint, $min-or-max) {
+  @if($breakpoint == 0) {
+    @content;
+  } @else {
+    @media screen and (#{$min-or-max}-width: $breakpoint *1px) {
+      @content;
+    }
+  }
+}
+
+@mixin create-col-classes($modifier, $grid__cols, $breakpoint) {
+  @include create-mq($breakpoint, 'min') {
+    &__col#{$modifier}-offset-0 {
+      margin-left: 0;
+    }
+    @for $i from 1 through $grid__cols {
+      &__col#{$modifier}-#{$i} {
+        flex-basis: (100 / ($grid__cols / $i) ) * 1%;
+      }
+      &__col#{$modifier}-offset-#{$i} {
+        margin-left: (100 / ($grid__cols / $i) ) * 1%;
+      }
+    }
+  }
+}
+
+@each $modifier , $breakpoint in $map-grid-props {
+  @if($modifier == '') {
+    $modifier: '-xs';
+  }
+  @include create-mq($breakpoint - 1, 'max') {
+    .hidden#{$modifier}-down {
+      display: none !important;
+    }
+  }
+  @include create-mq($breakpoint, 'min') {
+    .hidden#{$modifier}-up {
+      display: none !important;
+    }
+  }
+}

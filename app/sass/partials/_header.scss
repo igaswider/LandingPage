@@ -1,0 +1,225 @@
+.navigation {
+  padding-top: 2rem;
+
+  &__hamburger {
+    display: inline-block;
+
+    &--toggle {
+      display: inline-block;
+      position: relative;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background-color: transparent;
+      @include prefix(background-color, transparent);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &--svg {
+      display: block;
+      width: 30px;
+      height: 30px;
+      margin: 0;
+      opacity: 1;
+
+      .cls-1 {
+        height: 4.5px;
+        fill: #fff;
+        @include prefix(transition, 1s);
+        transition: 1s;
+        opacity: 1;
+      }
+
+      .cls-1.opacity {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__logo {
+    display: inline-block;
+    color: black;
+    padding-top: 3rem;
+    background: url(".././images/logo_awesome.svg") center / contain no-repeat;
+    width: 8rem;
+    height: 2rem;
+  }
+
+  &__list {
+
+    display: none;
+    transition: 1s;
+
+    &--bg {
+      background: none;
+      background-color: $bg;
+      @include prefix(transition, 0.5s);
+      transition: 0.5s;
+    }
+
+    li {
+      padding: 2rem 0;
+      color: $lightfont;
+      font-family: $Raleway;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.25rem;
+
+      a:not(.navigation__list--button) {
+        &:link {
+          @include link();
+        }
+
+        &:visited {
+          @include link();
+        }
+
+        &:hover {
+          @include link();
+        }
+
+        &:active {
+          @include link();
+        }
+      }
+    }
+
+    &--button {
+      &:link {
+        @include link();
+      }
+
+      &:visited {
+        @include link();
+      }
+
+      &:hover {
+        @include link();
+      }
+
+      &:active {
+        @include link();
+      }
+      @include contactButton();
+
+      &:hover {
+        color: $bg;
+        background-color: $lightfont;
+        transition: 0.5s linear;
+      }
+    }
+
+  }
+  &__list.hidden {
+    display: flex;
+    justify-content: center;
+    ul {
+      list-style-type: none;
+    }
+  }
+
+
+}
+
+@media screen and (min-width: 320px) and (orientation: landscape) {
+  .navigation {
+    &__list {
+      li {
+        padding: 0.7rem 0;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .navigation {
+    &__hamburger {
+      display: none;
+    }
+    .container__col-md-3 {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    &__logo {
+      margin-left: 2rem;
+      width: 10rem;
+    }
+
+    &__list {
+      display: flex;
+      justify-content: flex-end;
+      li {
+        display: inline;
+        padding: 1rem;
+        font-size: 0.9rem;
+
+        a:not(.navigation__list--button) {
+          position: relative;
+          padding-bottom: 0.5rem;
+          width: 0;
+
+          &:link::after {
+            width: 100%;
+          }
+
+          &:visited::after {
+            width: 100%;
+          }
+
+          &:hover::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            width: 50%;
+            height: 3px;
+            left: 0;
+            background-color: $lightfont;
+          }
+
+          &:active::after {
+            width: 100%;
+          }
+        }
+      }
+
+      &--button {
+        padding: 0.5rem 2.5rem;
+        border: 2px solid $lightfont;
+        border-radius: 6px;
+
+        &:link {
+          @include link();
+        }
+
+        &:visited {
+          @include link();
+        }
+
+        &:hover {
+          @include link();
+        }
+
+        &:active {
+          @include link();
+        }
+
+        &:hover {
+          color: $darkfont;
+          background-color: $lightfont;
+          transition: 0.5s linear;
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 820px) {
+  .navigation {
+    &__list {
+      padding: 1rem;
+    }
+  }
+}

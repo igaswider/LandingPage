@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Raleway:300,700');
+@import '_mixins.scss';
+@import '_variables.scss';
+@import './partials/_header.scss';
+@import './partials/_social.scss';
+@import './partials/_content.scss';
+@import './partials/_grid.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 13px;
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 992px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  height: 100vh;
+  font-family: $openSans;
+  background: url(".././images/bg_image.jpg") 65% 15%/300% no-repeat;
+  @include prefix(transition, 0.25s);
+  overflow: hidden;
+  transition: 0.25s;
+
+  .body--opacity {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    @include background-opacity($bg, 0.5);
+    opacity: 0.5;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (min-width: 320px) and (orientation: landscape) {
+  body {
+    background: url(".././images/bg_image.jpg") center center / cover no-repeat;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    background: url(".././images/bg_image.jpg") 63% 40%/200% no-repeat;
+  }
+}
+@media screen and (min-width: 1300px) {
+  body {
+    background: url(".././images/bg_image.jpg") 70% 30% / 160% no-repeat;
+  }
+}
+@media screen and (min-width: 1440px) {
+  body {
+    background: url(".././images/bg_image.jpg") 65% 35%/190% no-repeat;
+  }
+}
